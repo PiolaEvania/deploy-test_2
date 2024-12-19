@@ -25,7 +25,7 @@ const TableLaporan = () => {
   }, []);
 
   const deleteLaporanHandler = (e) => {
-    const getId = e.target.dataset.id;
+    const getId = e.currentTarget.getAttribute('data-id');
     console.log(getId);
     // axios.delete(`https://route-sure-api.vercel.app/api/laporan/${ getId }`, { withCredentials: true })
     //   .then(() => {
