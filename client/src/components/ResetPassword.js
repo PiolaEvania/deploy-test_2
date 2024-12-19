@@ -12,7 +12,7 @@ const ResetPassword = () => {
   function resetPasswordHandler(e) {
     e.preventDefault();
     const url = window.location.href;
-    const token = url.pathname.split('/').pop();
+    const token = url.split('/')[4];
 
     if (password !== confirmPassword) {
       toast.error('Password dan Confirm Password tidak sama!');
