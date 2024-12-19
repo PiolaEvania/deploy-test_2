@@ -4,7 +4,7 @@ const Users = require('../models/User');
 
 
 exports.authMiddleware = async (req, res, next) => {
-  const token = req.cookies['jwt'];
+  const token = req.cookies.jwt;
   if (!token) {
     return next(res.status(401).json({
       status: 'Error',
