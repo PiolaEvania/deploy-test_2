@@ -26,7 +26,7 @@ const TableLaporan = () => {
 
   const deleteLaporanHandler = (e) => {
     const getId = e.currentTarget.getAttribute('data-id');
-    console.log(getId);
+    console.log('data-id: ', getId);
     // axios.delete(`https://route-sure-api.vercel.app/api/laporan/${ getId }`, { withCredentials: true })
     //   .then(() => {
     //     toast.success("Data Laporan berhasil di hapus");
