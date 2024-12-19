@@ -26,20 +26,7 @@ const TableLaporan = () => {
 
   const deleteLaporanHandler = (e) => {
     const getId = e.currentTarget.getAttribute('data-id');
-    console.log('data-id: ', getId);
-    axios.delete(`https://route-sure-api.vercel.app/api/laporan/${ getId }`, { withCredentials: true })
-      .then(() => {
-        toast.success("Data Laporan berhasil di hapus");
-        //setLaporanUser(laporanUser.filter(laporan => laporan._id !== getId));
-        //setFilteredLaporan(filteredLaporan.filter(laporan => laporan._id !== getId));
-    }).catch((error) => {
-        toast.error("Kesalahan Server Error", error);
-        console.log(error);
-    });
-  };
-
-  {/*const deleteLaporanHandler = (e) => {
-    const getId = e.currentTarget.getAttribute('data-id');
+    console.log('data-id:', getId);
     if (!getId) {
       toast.error('Invalid ID. Unable to delete laporan.');
       return;
@@ -68,7 +55,7 @@ const TableLaporan = () => {
           });
       }
     });
-  };*/}
+  };
 
   const sortByStatusHandle = (e) => {
     const targetStatus = e.target.value;
