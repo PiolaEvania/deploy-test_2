@@ -42,6 +42,15 @@ exports.register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+
+    const existingEmail = await Users.findOne({
+      email: req.body.email
+    })
+    if (req.body.email === existingEmail) {
+      return res.status(400).json({
+        message: 'Error: Email Anda sudah terdaftar'
+      })
+    }
     return res.status(200).json({
       message: 'Success',
       registerData

@@ -26,17 +26,17 @@ const Register = () => {
   async function submitUserData(e) {
     e.preventDefault();
     if (!userData.email || !userData.name || !userData.password || !userData.confirmPassword) {
-      toast.error('Semua field harus diisi!', toastUtil);
+      toast.warn('Semua field harus diisi!', toastUtil);
       return;
     }
-    
+
     if (userData.password !== userData.confirmPassword) {
-      toast.error('Password dan Confirm Password tidak sama!', toastUtil);
+      toast.warn('Password dan Confirm Password tidak sama!', toastUtil);
       return;
     }
 
     if (userData.password.length < 6 ) {
-      toast.error('Password minimal 6 karakter', toastUtil);
+      toast.warn('Password minimal 6 karakter', toastUtil);
       return;
     }
 
@@ -46,14 +46,11 @@ const Register = () => {
         toast.success(`Akun ${ response.data.message } terdaftar.`, toastUtil);
         navigate('/login');
       }
-
     }
+
     catch (err) {
-      if (err.response && err.response.status === 400) {
-        toast.error('Error: Email Anda sudah terdaftar.', toastUtil);
-      } else {
-        toast.error('Terjadi kesalahan pada server.', toastUtil);
-      }
+      console.log(err);
+      toast.error('Terjadi kesalahan pada server.', toastUtil);
     }
 
   }
