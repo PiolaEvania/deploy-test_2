@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/dashboard/sendStatus/:id" element={<SendEmailPages />} />
         </Route>
         <Route path="/forgotPassword" element={< ForgotPasswordPages />} />
-        <Route path="/resetPassword/:token" element={< ResetPasswordPages />} />
+        <Route path="/api/resetPassword/:token" element={< ResetPasswordPages />} />
       </Routes>
       <ToastContainer />
     </div>
