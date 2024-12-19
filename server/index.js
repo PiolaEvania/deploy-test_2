@@ -30,13 +30,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://app-route-sure.vercel.app',
+  origin: 'https://route-sure.netlify.app',
   credentials: true
 }));
 app.use(helmet());
 app.use(expressMongoSanitize());
 app.use(express.static('./public/uploads'));
 
+app.get('/', (req, res) => {
+  res.send('Server is running...');
+});
 
 //Routes
 app.use('/api', authRoutes);
