@@ -6,7 +6,7 @@ const { authMiddleware } = require('../middleware/userMiddleware.js');
 authUser.post('/register', register);
 authUser.post('/login', login);
 authUser.post('/forgotPassword', forgotPassword);
-authUser.put('route-sure-api.vercel.app/resetPassword/:token', resetPassword);
+authUser.put('/resetPassword/:token', resetPassword);
 authUser.post('/logout', authMiddleware, logout);
 authUser.get('/get-user/:id', authMiddleware, getCurrentUser);
 authUser.get('/get-user', getUser);
