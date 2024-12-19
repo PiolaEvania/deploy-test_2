@@ -138,7 +138,7 @@ exports.forgotPassword = async (req, res) => {
             <p>Kami menerima permintaan untuk mereset password akun Anda. Jika Anda tidak membuat permintaan ini, abaikan email ini.
             </p><br>
             <p>Untuk reset password, silakan klik tautan di bawah ini:</p>
-            <a href="https://route-sure-api.vercel.app/resetPassword/${ token }">Reset Password</a>
+            <a href="http://localhost:3000/resetPassword/${ token }">Reset Password</a>
             <p>Jika Anda mengalami masalah atau memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.
             Terima kasih.
             <p>Salam Hangat,</p><br> <p>RouteSure Team</p>`
