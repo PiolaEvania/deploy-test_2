@@ -17,7 +17,7 @@ const MapComponent = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/laporan', { withCredentials: true })
+      .get('https://route-sure-api.vercel.app/api/laporan', { withCredentials: true })
       .then((response) => {
         if (Array.isArray(response.data.data)) {
           console.log('API response:', response.data);

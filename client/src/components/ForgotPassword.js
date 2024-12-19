@@ -8,7 +8,7 @@ const ForgotPassword = () => {
 
   function checkEmail(e) {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/forgotPassword', {
+    axios.post('https://route-sure-api.vercel.app/api/forgotPassword', {
       email: emailUser
     }).then((response) => {
       console.log(response.data);

@@ -25,7 +25,7 @@ const Login = ({ setUser }) => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/login', userData, { withCredentials: true });
+      const response = await axios.post('https://route-sure-api.vercel.app/api/login', userData, { withCredentials: true });
       localStorage.setItem('user', JSON.stringify(response.data.user));
       if (response.status === 200) {
         toast.success(`Akun ${ response.data.message } terdaftar.`, toastUtil);

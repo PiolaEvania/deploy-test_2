@@ -17,7 +17,7 @@ const SendEmail = () => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/laporan/${ idLaporan }`, { withCredentials: true })
+    axios.get(`https://route-sure-api.vercel.app/api/laporan/${ idLaporan }`, { withCredentials: true })
       .then((response) => {
         setLaporanUser(response.data);
         setStatus(response.data.detailLaporan.status);

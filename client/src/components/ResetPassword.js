@@ -18,7 +18,7 @@ const ResetPassword = () => {
       toast.error('Password dan Confirm Password tidak sama!');
       return;
     }
-    axios.put(`http://localhost:5000/api/resetPassword/${ token }`,
+    axios.put(`https://route-sure-api.vercel.app/api/resetPassword/${ token }`,
       { password: password })
       .then((response) => {
         console.log(response.data);

@@ -5,7 +5,7 @@ import axios from 'axios';
 const TableUser = () => {
   const [DataUser, setDataUser] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/api/get-user', { withCredentials: true })
+    axios.get('https://route-sure-api.vercel.app/api/get-user', { withCredentials: true })
       .then((response) => {
         console.log(response);
         if (Array.isArray(response.data.user)) {
