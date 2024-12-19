@@ -12,8 +12,9 @@ const TableLaporan = () => {
     axios.get('https://route-sure-api.vercel.app/api/laporan', { withCredentials: true })
       .then((response) => {
         if (Array.isArray(response.data.data)) {
-          setLaporanUser(response.data.data);
-          setFilteredLaporan(response.data.data); // Initialize filteredLaporan with all data
+          const sortedData = response.data.data.sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+          setLaporanUser(sortedData);
+          setFilteredLaporan(sortedData);
         } else {
           console.error('API response is not an array:', response.data);
         }
