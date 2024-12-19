@@ -49,8 +49,10 @@ const Register = () => {
     }
 
     catch (err) {
-      console.log(err);
-      toast.error('Terjadi kesalahan pada server.', toastUtil);
+      toast.error('Error: Email Anda sudah terdaftar', toastUtil);
+      if (err.status(500)) {
+        console.error(err.response.data.message);
+      }
     }
 
   }
