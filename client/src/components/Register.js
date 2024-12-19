@@ -29,10 +29,17 @@ const Register = () => {
       toast.error('Semua field harus diisi!', toastUtil);
       return;
     }
+    
     if (userData.password !== userData.confirmPassword) {
       toast.error('Password dan Confirm Password tidak sama!', toastUtil);
       return;
     }
+
+    if (userData.password.length < 6 ) {
+      toast.error('Password minimal 6 karakter', toastUtil);
+      return;
+    }
+
     try {
       const response = await axios.post('https://route-sure-api.vercel.app/api/register', userData);
       if (response.status === 200) {
