@@ -31,7 +31,6 @@ const ResetPassword = () => {
       });
   }
 
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-darkCharcoal px-6 py-12 lg:px-8">
       <div className="w-full max-w-md bg-white rounded shadow-md p-6">
