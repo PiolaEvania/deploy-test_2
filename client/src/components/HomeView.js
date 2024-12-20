@@ -42,14 +42,15 @@ const HomeView = () => {
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
         confirmButtonText: 'Log Out',
-        cancelButtonText: 'Cancel',
+        cancelButtonText: 'Batal',
       }).then((result) => {
         if (result.isConfirmed) {
           const removeUser = localStorage.removeItem('user');
           Cookies.remove('jwt');
           axios.post('https://route-sure-api.vercel.app/api/logout', removeUser, { withCredentials: true })
             .then(() => {
-              toast.success('Logout berhasil.');
+              console.log('Log Out Berhasil');
+              toast.success('Anda telah Log Out');
               navigate('/login');
             })
             .catch((error) => {
@@ -88,20 +89,20 @@ const HomeView = () => {
           'Content-Type': 'multipart/form-data',
         },
       })
-      .then((response) => {
-        console.log('FormData:', [...formData.entries()]);
-        toast.success(response.data.message);
-        setTimeout(() => {
-          window.location.reload()
-        }, 5000)
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error('Laporan dengan lokasi ini sudah ada dan sedang diproses.');
-      });
+        .then((response) => {
+          console.log('FormData:', [...formData.entries()]);
+          toast.success(response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error('Laporan dengan lokasi ini sudah ada dan sedang diproses');
+        });
     }, (error) => {
       console.error(error);
-      toast.error('Gagal mendapatkan lokasi. Pastikan izin lokasi diaktifkan.');
+      toast.error('Gagal mendapatkan lokasi. Pastikan izin lokasi diaktifkan');
     });
   };
 

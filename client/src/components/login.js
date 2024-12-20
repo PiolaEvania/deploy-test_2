@@ -21,7 +21,7 @@ const Login = ({ setUser }) => {
   async function submitUserData(e) {
     e.preventDefault();
     if (!userData.email || !userData.password) {
-      toast.error('Semua field harus diisi!', toastUtil);
+      toast.warn('Semua field harus diisi!', toastUtil);
       return;
     }
     try {
@@ -29,6 +29,7 @@ const Login = ({ setUser }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       if (response.status === 200) {
         toast.success(`Akun ${ response.data.message } terdaftar.`, toastUtil);
+        console.log(response.data.user);
         setUser(response.data.user);
       }
       if (response.data.user.name === 'admin') {
@@ -43,7 +44,7 @@ const Login = ({ setUser }) => {
         toast.error('Error: Email atau Password salah!', toastUtil);
         return;
       } else {
-        toast.error('Terjadi kesalahan pada server.', toastUtil);
+        toast.error('Terjadi kesalahan pada server', toastUtil);
         return;
       }
     }

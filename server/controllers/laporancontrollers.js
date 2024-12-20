@@ -21,7 +21,7 @@ exports.createLaporan = async (req, res) => {
   try {
     const file = req.file;
     if (!file) {
-      return res.status(400).json({ message: 'File image tidak di temukan.' });
+      return res.status(400).json({ message: 'File image tidak di temukan' });
     }
 
     const uploadImage = () => {
@@ -45,7 +45,7 @@ exports.createLaporan = async (req, res) => {
     const radius = 0.0018; // Radius dalam derajat (sekitar 200 meter)
 
     const nearbyLaporan = await Laporan.find();
-    const isNearby = nearbyLaporan.some(laporan => {
+    const isNearby = nearbyLaporan.some((laporan) => {
       const deltaLat = latitude - laporan.position.latitude;
       const deltaLon = longitude - laporan.position.longitude;
       const distance = Math.sqrt(deltaLat * deltaLat + deltaLon * deltaLon);
@@ -54,7 +54,7 @@ exports.createLaporan = async (req, res) => {
 
     if (isNearby) {
       return res.status(400).json({
-        message: 'Laporan sudah ada dalam radius yang ditentukan.'
+        message: 'Laporan sudah ada dalam radius yang ditentukan'
       });
     }
 
@@ -68,7 +68,7 @@ exports.createLaporan = async (req, res) => {
 
     return res.status(200).json({
       status: 'success',
-      message: 'Terima Kasih atas laporan Anda. Laporan Anda sedang dalam proses.',
+      message: 'Terima Kasih atas laporan Anda. Laporan Anda sedang dalam proses',
       data: laporan
     });
   } catch (error) {
@@ -83,7 +83,7 @@ exports.updateStatusLaporan = async (req, res) => {
   const id = req.params.id;
   if (!id) {
     return res.status(400).json({
-      message: 'ID tidak ditemukan.'
+      message: 'ID tidak ditemukan'
     });
   }
   try {
@@ -91,7 +91,7 @@ exports.updateStatusLaporan = async (req, res) => {
     if (!getIdLaporan) {
       return res.status(404).json({
 
-        message: 'Laporan tidak ditemukan.'
+        message: 'Laporan tidak ditemukan'
       });
     }
     const updateStatusLaporan = await Laporan.findByIdAndUpdate(
@@ -102,12 +102,12 @@ exports.updateStatusLaporan = async (req, res) => {
       { new: true }
     );
     return res.status(200).json({
-      message: 'Status laporan berhasil diupdate.',
+      message: 'Status laporan berhasil diupdate',
       data: updateStatusLaporan
     });
   } catch (error) {
     return res.status(500).json({
-      status: 'Internal Server Error!',
+      status: 'Internal Server Error',
       message: error.message
     });
   }
@@ -119,14 +119,14 @@ exports.deleteLaporan = async (req, res) => {
     // Periksa apakah id ada dalam parameter
     if (!id) {
       return res.status(400).json({
-        message: 'ID laporan tidak ditemukan.'
+        message: 'ID laporan tidak ditemukan'
       });
     }
 
     // Cari laporan berdasarkan ID
     const laporan = await Laporan.findById(id);
     if (!laporan) {
-      return res.status(404).json({ message: 'Laporan tidak ditemukan.' });
+      return res.status(404).json({ message: 'Laporan tidak ditemukan' });
     }
 
     // Ambil URL gambar jika ada
@@ -151,12 +151,12 @@ exports.deleteLaporan = async (req, res) => {
 
     // Kirim response sukses
     return res.status(200).json({
-      message: 'Laporan berhasil dihapus.'
+      message: 'Laporan berhasil dihapus'
     });
   } catch (error) {
     console.error('Kesalahan saat menghapus laporan:', error.message);
     return res.status(500).json({
-      status: 'Internal Server Error!',
+      status: 'Internal Server Error',
       message: error.message
     });
   }

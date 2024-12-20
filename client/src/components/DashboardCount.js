@@ -16,7 +16,7 @@ const DashboardCount = () => {
           if (Array.isArray(response.data.user)) {
             setUserCount(response.data.user.length);
           } else {
-            console.error('Failed to fetch user count:', response.data);
+            console.error('Gagal mengambil data user:', response.data);
           }
         })
         .catch((err) => console.error(err));
@@ -36,7 +36,7 @@ const DashboardCount = () => {
             ).length;
             setLaporanSelesaiCount(selesaiCount);
           } else {
-            console.error('Failed to fetch laporan count:', response.data);
+            console.error('Gagal mengambil data laporan:', response.data);
           }
         })
         .catch((err) => console.error(err));

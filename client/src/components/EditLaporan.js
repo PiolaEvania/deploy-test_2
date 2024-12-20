@@ -31,7 +31,7 @@ const EditLaporan = () => {
       .then((response) => {
         setLaporanUser(response.data);
         console.log(response.data);
-        toast.success('Data laporan berhasil disimpan.');
+        toast.success('Data laporan berhasil disimpan');
         navigate('/dashboard');
       }).catch((err) => {
         console.log(err);

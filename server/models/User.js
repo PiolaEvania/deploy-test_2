@@ -7,21 +7,21 @@ const Roles = require('../models/Role');
 const userSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Nama User harus diisi.'],
+    required: [true, 'Nama harus diisi'],
   },
   email: {
     type: String,
-    required: [true, 'Email harus diisi.'],
+    required: [true, 'Email harus diisi'],
     validate: {
       validator: validator.isEmail,
       message: 'Alamat email harus berformat example@gmail.com'
     },
-    unique: [true, 'Email sudah terdaftar.']
+    unique: [true, 'Email sudah terdaftar']
   },
   password: {
     type: String,
-    required: [true, 'Password harus diisi.'],
-    minLength: [6, 'Password minimal 6 karakte.r']
+    required: [true, 'Password harus diisi'],
+    minLength: [6, 'Password minimal 6 karakter']
 
   },
   role: {

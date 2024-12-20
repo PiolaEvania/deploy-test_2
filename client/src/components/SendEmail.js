@@ -35,7 +35,7 @@ const SendEmail = () => {
         : laporanUser?.detailLaporan?.status === 'Ditolak' ? 'template_dc55h3n' : null;
 
     if (!templateId) {
-      toast.error('Template email tidak ditemukan untuk status laporan ini.');
+      toast.error('Template email tidak ditemukan untuk status laporan ini');
       return;
     }
 
@@ -50,11 +50,11 @@ const SendEmail = () => {
       .send('service_qq81thb', templateId, templateParams, '0mgCiwlEqfhvm9Nln')
       .then(
         () => {
-          console.log('SUCCESS!');
-          toast.success('Status laporan berhasil dikirim ke User.');
+          console.log('Status laporan berhasil dikirim');
+          toast.success('Status laporan berhasil dikirim ke User');
         },
         (error) => {
-          console.log('FAILED...', error);
+          console.log('Terjadi kesalahan pada server', error);
           toast.error(error.text);
         }
       );

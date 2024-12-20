@@ -3,7 +3,7 @@ import pluginJs from '@eslint/js';
 import pluginReact from 'eslint-plugin-react';
 import daStyle from 'eslint-config-dicodingacademy';
 
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   { files: ['**/*.{js,mjs,cjs,jsx}'] },
   { languageOptions: { globals: globals.browser } },
@@ -11,6 +11,11 @@ export default [
   pluginReact.configs.flat.recommended,
   daStyle,
   {
+    settings: {
+      react: {
+        version: 'detect', // Automatically detect the React version
+      },
+    },
     rules: {
       'no-undef': 'off',
       'camelcase': 'off',

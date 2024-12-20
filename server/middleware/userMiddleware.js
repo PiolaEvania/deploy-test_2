@@ -8,7 +8,7 @@ exports.authMiddleware = async (req, res, next) => {
   if (!token) {
     return next(res.status(401).json({
       status: 'Error',
-      message: 'Anda belum login.'
+      message: 'Anda belum login'
     }));
   }
   try {
@@ -17,7 +17,7 @@ exports.authMiddleware = async (req, res, next) => {
     if (!currentUser) {
       return res.status(401).json({
         status: 'Error',
-        message: 'Pengguna tidak ditemukan.'
+        message: 'Pengguna tidak ditemukan'
       });
     }
     req.user = currentUser;
@@ -25,7 +25,7 @@ exports.authMiddleware = async (req, res, next) => {
   } catch (err) {
     return next(res.status(401).json({
       error: err,
-      message: 'Token yang dimasukkan tidak valid.'
+      message: 'Token yang dimasukkan tidak valid'
     }));
   }
 };
@@ -38,14 +38,14 @@ exports.permissionRole = (...roles) => {
       if (!roles.includes(roleName)) {
         return res.status(403).json({
           status: 403,
-          error: 'Anda tidak dapat mengakses halaman ini.'
+          error: 'Anda tidak dapat mengakses halaman ini'
         });
       }
       next();
     } catch (err) {
       return res.status(500).json({
         status: 'Error',
-        message: 'Terjadi kesalahan pada server.'
+        message: 'Terjadi kesalahan pada server'
       });
     }
   };

@@ -28,14 +28,15 @@ const Dashboard = () => {
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
         confirmButtonText: 'Log Out',
-        cancelButtonText: 'Cancel',
+        cancelButtonText: 'Batal',
       }).then((result) => {
         if (result.isConfirmed) {
           const removeUser = localStorage.removeItem('user');
           Cookies.remove('jwt');
           axios.post('https://route-sure-api.vercel.app/api/logout', removeUser, { withCredentials: true })
             .then(() => {
-              toast.success('Logout berhasil.');
+              console.log('Log Out Berhasil');
+              toast.success('Anda telah Log Out');
               navigate('/login');
             })
             .catch((error) => {

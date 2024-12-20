@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
     if (req.body.password !== req.body.confirmPassword) {
       return res.status(400).json({
         status: 'Failed',
-        message: 'Password dan confirm Password tidak sama.'
+        message: 'Password dan Confirm Password tidak sama'
       });
     }
     const registerData = await Users.create({
@@ -45,11 +45,11 @@ exports.register = async (req, res) => {
 
     const existingEmail = await Users.findOne({
       email: req.body.email
-    })
+    });
     if (req.body.email === existingEmail) {
       return res.status(400).json({
         message: 'Error: Email Anda sudah terdaftar'
-      })
+      });
     }
     return res.status(200).json({
       message: 'Success',
@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
   if (!req.body.email || !req.body.password) {
     return res.status(400).json({
       status: 'Failed',
-      message: 'Validasi Error.',
+      message: 'Validasi Error',
     });
   }
   const userData = await Users.findOne({
@@ -79,7 +79,7 @@ exports.login = async (req, res) => {
     return res.status(400).json({
       status: 'Failed',
       message: 'Error login.',
-      error: 'Invalid email or password!',
+      error: 'Email atau Password Invalid!',
     });
   }
   createSendToken(userData, 201, res);
@@ -93,7 +93,7 @@ exports.getUser = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Terjadi kesalahan pada server.'
+      message: 'Terjadi kesalahan pada server'
     });
   }
 };
@@ -108,7 +108,7 @@ exports.getCurrentUser = async (req, res) => {
   }
   catch (error) {
     return res.status(400).json({
-      message: 'Pengguna tidak ditemukan.'
+      message: 'Pengguna tidak ditemukan'
     });
   }
 };
@@ -119,7 +119,7 @@ exports.logout = async (req, res) => {
     httpOnly: true
   });
   return res.status(200).json({
-    message: 'Logout berhasil.'
+    message: 'Log Out berhasil'
   });
 };
 
@@ -131,7 +131,7 @@ exports.forgotPassword = async (req, res) => {
     });
     if (!user) {
       return res.status(400).json({
-        message: 'Email Anda tidak di temukan.'
+        message: 'Email Anda tidak ditemukan'
       });
     }
 
@@ -165,7 +165,7 @@ exports.forgotPassword = async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({
-      message: 'Internal Server Error.',
+      message: 'Internal Server Error',
       error: err.stack
     });
   }
@@ -176,22 +176,22 @@ exports.resetPassword = async (req, res) => {
   const { token } = req.params;
   if (!token) {
     return res.status(404).json({
-      message: 'Token tidak valid.'
+      message: 'Token tidak valid'
     });
   } try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await Users.findById(decoded._id);
     if (!user) {
       return res.status(400).json({
-        message: 'Pengguna tidak ditemukan.'
+        message: 'Pengguna tidak ditemukan'
       });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     await Users.findByIdAndUpdate(decoded._id, { password: hashedPassword });
-    return res.status(200).json({ message: 'Password berhasil diubah, silakan login kembali.' });
+    return res.status(200).json({ message: 'Password berhasil diubah, silakan login kembali' });
   } catch (error) {
     return res.status(400).json({
-      message: "Token expired"
+      message: 'Token expired'
     });
   }
 };

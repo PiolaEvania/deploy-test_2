@@ -26,9 +26,8 @@ const TableLaporan = () => {
 
   const deleteLaporanHandler = (e) => {
     const getId = e.currentTarget.getAttribute('data-id');
-    console.log('data-id:', getId);
     if (!getId) {
-      toast.error('Invalid ID. Unable to delete laporan.');
+      toast.error('ID Invalid. Tidak bisa menghapus laporan');
       return;
     }
 
@@ -39,18 +38,19 @@ const TableLaporan = () => {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal',
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`https://route-sure-api.vercel.app/api/laporan/${getId}`, { withCredentials: true })
           .then(() => {
+            console.log(`data-id: ${ getId } berhasil dihapus`);
             toast.success('Data Laporan berhasil dihapus');
             setLaporanUser(laporanUser.filter((laporan) => laporan._id !== getId));
             setFilteredLaporan(filteredLaporan.filter((laporan) => laporan._id !== getId));
           })
           .catch((error) => {
-            toast.error('Kesalahan Server. Coba lagi nanti.');
+            toast.error('Terjadi kesalahan pada server');
             console.error('Delete failed:', error);
           });
       }

@@ -15,7 +15,6 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-
   const toastUtil = {
     position: 'top-left',
     closeOnClick: true,
@@ -35,7 +34,7 @@ const Register = () => {
       return;
     }
 
-    if (userData.password.length < 6 ) {
+    if (userData.password.length < 6) {
       toast.warn('Password minimal 6 karakter', toastUtil);
       return;
     }
@@ -43,14 +42,14 @@ const Register = () => {
     try {
       const response = await axios.post('https://route-sure-api.vercel.app/api/register', userData);
       if (response.status === 200) {
-        toast.success(`Akun ${ response.data.message } terdaftar.`, toastUtil);
+        toast.success(`Akun ${ response.data.message } terdaftar`, toastUtil);
         navigate('/login');
       }
     }
 
     catch (err) {
       toast.error('Error: Email Anda sudah terdaftar', toastUtil);
-      if (err.status(500)) {
+      if (err) {
         console.error(err.response.data.message);
       }
     }

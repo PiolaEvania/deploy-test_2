@@ -13,7 +13,7 @@ const Weather = () => {
         fetchWeatherData(latitude, longitude);
       },
       (error) => {
-        toast.error('Tidak dapat mengakses lokasi.');
+        toast.error('Gagal mendapatkan lokasi. Pastikan izin lokasi diaktifkan');
         setLoading(false);
       }
     );
@@ -27,15 +27,15 @@ const Weather = () => {
       );
       setWeatherData(response.data);
     } catch (error) {
-      toast.error('Gagal mengambil data cuaca.');
+      toast.error('Gagal memuat data cuaca');
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading) return <div className='ml-2 text-white'>Loading cuaca...</div>;
+  if (loading) return <div className='ml-2 text-white'>Memuat cuaca...</div>;
 
-  if (!weatherData) return <div>Cuaca tidak tersedia.</div>;
+  if (!weatherData) return <div>Cuaca tidak tersedia</div>;
 
   const { main, weather, name } = weatherData;
   const weatherIcon = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
